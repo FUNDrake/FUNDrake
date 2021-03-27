@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvAttendStud9Wel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Attendance" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvAttendStud9Wel"
+        android:layout_marginTop="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectCode9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="CS8811"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectName9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Project Work" />
+
+                <TextView
+                    android:id="@+id/tvAttendStudSubjectAttend9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="35dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:text="Number" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

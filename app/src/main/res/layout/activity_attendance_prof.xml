@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/tvAttendProfYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="90dp"
+        android:text="Year : " />
+
+    <Spinner
+        android:id="@+id/spinnerAttendProfYear"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="120dp" />
+
+    <TextView
+        android:id="@+id/tvAttendProfSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="125dp"
+        android:text="Subject :"
+        android:layout_marginStart="55dp" />
+
+    <Spinner
+        android:id="@+id/spinnerAttendProfSub"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginStart="120dp" />
+
+    <TextView
+        android:id="@+id/tvAttendProfDep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="165dp"
+        android:text="Department :"
+        android:layout_marginStart="30dp" />
+
+    <Spinner
+        android:id="@+id/spinnerAttendProfDep"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginStart="120dp" />
+
+    <TextView
+        android:id="@+id/tvAttendProfPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="205dp"
+        android:text="Period :"
+        android:layout_marginStart="60dp" />
+
+    <Spinner
+        android:id="@+id/spinnerAttendProfPeriod"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="120dp" />
+
+    <Button
+        android:id="@+id/buttonAttendProfSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginBottom="50dp"
+        android:text="Submit"
+        android:layout_marginStart="160dp" />
+
+</RelativeLayout>

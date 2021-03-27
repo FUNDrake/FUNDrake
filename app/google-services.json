@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "397401251410",
+    "project_id": "a-c-e-alpha",
+    "storage_bucket": "a-c-e-alpha.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397401251410:android:dea7424c0c89deb291498b",
+        "android_client_info": {
+          "package_name": "com.f_u_ndrake.alphacollegeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397401251410-v49kd660p45qba8vji1aeskf5ut2nlr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkRWULlRNOFP0S3cilVdKzjHu08MJxbX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397401251410-v49kd660p45qba8vji1aeskf5ut2nlr1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

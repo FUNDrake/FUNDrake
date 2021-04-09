@@ -219,6 +219,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardviewCGPA"
                 android:layout_width="180dp"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
@@ -253,7 +254,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:visibility="gone"
+                android:id="@+id/cardviewEvents"
                 android:layout_width="180dp"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
@@ -277,7 +278,40 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center_horizontal"
                     android:layout_marginTop="70dp"
-                    android:text="Calendar"
+                    android:text="Events"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+
+                    />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imgcalenda2"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:src="@mipmap/ic_attendance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="70dp"
+                    android:text="Attendance Prof"
                     android:textColor="@color/black"
                     android:textStyle="bold"
 

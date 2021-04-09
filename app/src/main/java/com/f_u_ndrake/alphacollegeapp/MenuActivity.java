@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MenuActivity extends AppCompatActivity {
 
-    CardView Material, Attedance,News,Calendar;
+    CardView Material, Attendance,AttendanceProf,News,Calendar,Events,CGPA;
     TextView welcomeUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private long backPressedTime;
@@ -52,17 +52,26 @@ public class MenuActivity extends AppCompatActivity {
 
 
         Material = (CardView)findViewById(R.id.cardviewMaterial);
-        Attedance = (CardView)findViewById(R.id.cardviewAttendance);
+        Attendance = (CardView)findViewById(R.id.cardviewAttendance);
         News =  (CardView)findViewById(R.id.cardviewNews);
         Calendar =  (CardView)findViewById(R.id.cardviewCalendar);
+        AttendanceProf = (CardView)findViewById(R.id.imgcalenda2);
+        Events = (CardView)findViewById(R.id.cardviewEvents);
+        CGPA = (CardView)findViewById(R.id.cardviewCGPA);
 
         welcomeUser = (TextView)findViewById(R.id.textWelcome);
 
-
-        Attedance.setOnClickListener(new View.OnClickListener() {
+        CGPA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this,CGPA.class);
+                startActivity(intent);
+            }
+        });
 
+        Attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 switch (subject){
                     case 8 :
                         Intent intent = new Intent(MenuActivity.this,AttendanceStud8.class);
@@ -79,6 +88,14 @@ public class MenuActivity extends AppCompatActivity {
                 }
         });
 
+        AttendanceProf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this,AttendanceProf.class);
+                startActivity(intent);
+            }
+        });
+
         Material.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +108,15 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this,CalendarEvent.class);
+                startActivity(intent);
+            }
+        });
+
+        Events.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this,"Please wait for the Page to load",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MenuActivity.this, com.f_u_ndrake.alphacollegeapp.Events.class);
                 startActivity(intent);
             }
         });

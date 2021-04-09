@@ -4,362 +4,111 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TableLayout
+    <TextView
+        android:id="@+id/textCGPADepartment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_centerInParent="true">
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/tvTabSem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Semester 1" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="Subject Code" />
-
-            <TextView
-                android:id="@+id/tvTabSubName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="Subject Name" />
-
-            <TextView
-                android:id="@+id/tvTabCredit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="Credit" />
-
-            <TextView
-                android:id="@+id/tvTabGradeEarn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="Earned Grade" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="1" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="2" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="3" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="4" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="5" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="6" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="7" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="8" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade"/>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="9" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvTabSubCode10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubName10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvTabSubCredit10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="10" />
-
-            <Spinner
-                android:id="@+id/spinnerGrade10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Grade" />
-
-        </TableRow>
-
-    </TableLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="80dp"
+        android:text="Department"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <Spinner
+        android:id="@+id/spinnerCGPADep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_toEndOf="@+id/textCGPADepartment"
+        android:layout_toRightOf="@+id/textCGPADepartment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textCGPAYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textCGPADepartment"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="145dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="35dp"
+        android:text="Year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerCGPAYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="150dp"
+        android:layout_toEndOf="@+id/textCGPAYear"
+        android:layout_toRightOf="@+id/textCGPAYear" />
+
+    <TextView
+        android:id="@+id/textCGPASemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textCGPAYear"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginLeft="113dp"
+        android:layout_marginTop="35dp"
+        android:text="Semester" />
+
+    <Spinner
+        android:id="@+id/spinnerCGPASemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_toEndOf="@+id/textCGPASemester"
+        android:layout_toRightOf="@+id/textCGPASemester" />
+
+    <Button
+        android:id="@+id/butCGPA_CGPA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="CGPA" />
+
+    <Button
+        android:id="@+id/butCGPA_GPA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="GPA" />
 
 </RelativeLayout>

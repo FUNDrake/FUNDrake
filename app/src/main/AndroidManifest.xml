@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:windowSoftInputMode="stateVisible|adjustResize">
-        <activity android:name=".CGPA"></activity>
+        <activity android:name=".C_CGPATotal"></activity>
+        <activity android:name=".Events" />
+        <activity android:name=".CGPA" />
         <activity android:name=".CalendarEvent" />
         <activity android:name=".News" />
         <activity android:name=".AttendanceStud3" />

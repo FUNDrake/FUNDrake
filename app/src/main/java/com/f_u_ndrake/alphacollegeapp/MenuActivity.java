@@ -41,8 +41,6 @@ public class MenuActivity extends AppCompatActivity {
                 dep = task.getResult().getString("Department");
                 sem = task.getResult().getString("Semester");
                 getvalue(firstName,dep,sem);
-                String email = task.getResult().getString("Email");
-                String phone = task.getResult().getString("Phone");
                 //other stuff
                 welcomeUser.setText(" Welcome back \n" + firstName );
 
@@ -115,8 +113,7 @@ public class MenuActivity extends AppCompatActivity {
         Events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MenuActivity.this,"Please wait for the Page to load",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MenuActivity.this, com.f_u_ndrake.alphacollegeapp.Events.class);
+                Intent intent = new Intent(MenuActivity.this, Events.class);
                 startActivity(intent);
             }
         });

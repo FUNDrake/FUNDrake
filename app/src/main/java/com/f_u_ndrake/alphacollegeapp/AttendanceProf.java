@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -31,29 +32,29 @@ public class AttendanceProf extends AppCompatActivity {
 
     Spinner AttendProfDep,AttendProfYear,AttendProfPeriod;
     Button Submit,GetClass,SelectAll, SelectNone;
-    FirestoreRecyclerAdapter adapter;
-    FirebaseFirestore db;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference UserRef = db.collection("Users");
+    RecyclerView recyclerViewStud;
     String dep,year,period;
+    private StudentAdapter adapter;
+    int studcount;
     private static final String TAG = "AttendanceProf";
-    RecyclerView mfirestorelist;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_prof);
 
-        AttendProfDep = (Spinner)findViewById(R.id.spinnerAttendProfDep);
-        AttendProfYear = (Spinner)findViewById(R.id.spinnerAttendProfYear);
-        AttendProfPeriod = (Spinner)findViewById(R.id.spinnerAttendProfPeriod);
+        AttendProfDep = findViewById(R.id.spinnerAttendProfDep);
+        AttendProfYear = findViewById(R.id.spinnerAttendProfYear);
+        AttendProfPeriod = findViewById(R.id.spinnerAttendProfPeriod);
 
         GetClass = (Button)findViewById(R.id.buttonGetClass);
         SelectAll = (Button)findViewById(R.id.buttonSelectAll);
         SelectNone = (Button)findViewById(R.id.buttonSelectNone);
         Submit = (Button)findViewById(R.id.buttonAttendProfSubmit);
-        mfirestorelist=findViewById(R.id.mfirestorelist);
-
-         db = FirebaseFirestore.getInstance();
-        CollectionReference UserRef = db.collection("Users");
 
         String[] arrayDepart = new String[] {
                 "CSE", "BME", "ECE", "MECH", "MBA"};
@@ -78,47 +79,42 @@ public class AttendanceProf extends AppCompatActivity {
         year = AttendProfYear.getSelectedItem().toString();
         period = AttendProfPeriod.getSelectedItem().toString();
 
-        //Query query = UserRef.whereEqualTo("Department", dep).whereEqualTo("Year",year);
-        Query query = db.collection("Users").whereEqualTo("Department",dep).whereEqualTo("Year",year);
+        setupRecyclerView();
 
+        GetClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dep = AttendProfDep.getSelectedItem().toString();
+                year = AttendProfYear.getSelectedItem().toString();
+                period = AttendProfPeriod.getSelectedItem().toString();
+            }
+        });
+
+
+        //Query query = UserRef.whereEqualTo("Department", dep).whereEqualTo("Year",year);
+
+    }
+
+    private void setupRecyclerView() {
+
+        Query query = UserRef.whereEqualTo("Year",year);
         FirestoreRecyclerOptions<StudentClass> options = new FirestoreRecyclerOptions.Builder<StudentClass>()
                 .setQuery(query,StudentClass.class)
                 .build();
 
-        adapter = new FirestoreRecyclerAdapter<StudentClass, StudentViewHolder>(options) {
-            @NonNull
-            @Override
-            public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_student,parent,false);
-                return new StudentViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull StudentViewHolder holder, int position, @NonNull StudentClass model) {
-                holder.listStudentname.setText(model.getName());
-            }
-        };
-        mfirestorelist.setHasFixedSize(true);
-        mfirestorelist.setLayoutManager(new LinearLayoutManager(this));
-        mfirestorelist.setAdapter(adapter);
-    }
-
-    private class StudentViewHolder extends RecyclerView.ViewHolder {
-        private TextView listStudentname;
-        private CheckBox checkBoxAttend;
-
-        public StudentViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            listStudentname = itemView.findViewById(R.id.listStudentname);
-            checkBoxAttend = itemView.findViewById(R.id.checkBoxAttend);
-        }
+        adapter = new StudentAdapter(options);
+        recyclerViewStud = findViewById(R.id.recycler_viewStud);
+        recyclerViewStud.setHasFixedSize(true);
+        recyclerViewStud.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewStud.setAdapter(adapter);
+        studcount=recyclerViewStud.getChildCount();
+        Toast.makeText(this,"Child = "+studcount,Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        adapter.stopListening();
+        adapter.startListening();
     }
 
     @Override

@@ -224,7 +224,6 @@ public class RegisterActivity extends AppCompatActivity {
                                         Map<String,Object> users = new HashMap<>();
                                         users.put("FullName",DBfullname);
                                         users.put("EMailID",email);
-                                        users.put("Password",password);
                                         users.put("Phone Number",DBphonenumber);
                                         users.put("AU Roll No",DBaurollno);
                                         users.put("Gender",DBgender);
@@ -250,12 +249,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-
-
                 }
-
-
-
             }
         });
 

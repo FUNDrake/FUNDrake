@@ -74,16 +74,6 @@
 
 
     <Button
-        android:id="@+id/buttonAttendProfSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginBottom="50dp"
-        android:text="Submit" />
-
-    <Button
         android:id="@+id/buttonGetClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,8 +81,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="265dp"
         android:text="Get Class" />
 
@@ -101,8 +91,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="265dp"
         android:layout_centerInParent="true"
         android:layout_toEndOf="@+id/buttonGetClass"
@@ -114,8 +105,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
         android:layout_marginTop="265dp"
         android:layout_centerHorizontal="true"
         android:layout_toEndOf="@+id/buttonSelectAll"
@@ -123,14 +114,32 @@
         android:text="Select None" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mfirestorelist"
-        android:layout_width="350dp"
+        android:id="@+id/recycler_viewStud"
+        android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:layout_alignBottom="@+id/buttonAttendProfSubmit"
+        android:layout_centerInParent="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginBottom="70dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="70dp"
+        />
+
+    <Button
+        android:id="@+id/buttonAttendProfSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginBottom="50dp"
+        android:text="Submit" />
 
 </RelativeLayout>

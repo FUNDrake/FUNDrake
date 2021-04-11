@@ -3,7 +3,6 @@ package com.f_u_ndrake.alphacollegeapp;
 public class UserData {
     String fullname;
     String emailid;
-    String pass;
     String phonenumber;
     String aurollno;
     String gender;
@@ -12,10 +11,9 @@ public class UserData {
     String year;
     String semester;
 
-    public UserData(String fullname, String emailid, String pass, String phonenumber, String aurollno, String gender, String address, String department, String year, String semester) {
+    public UserData(String fullname, String emailid, String phonenumber, String aurollno, String gender, String address, String department, String year, String semester) {
         this.fullname = fullname;
         this.emailid = emailid;
-        this.pass = pass;
         this.phonenumber = phonenumber;
         this.aurollno = aurollno;
         this.gender = gender;

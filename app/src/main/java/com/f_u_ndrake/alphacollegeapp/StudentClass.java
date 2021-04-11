@@ -2,21 +2,21 @@ package com.f_u_ndrake.alphacollegeapp;
 
 public class StudentClass {
 
-    private String FullName;
-
-    private StudentClass() {}
-
-    private StudentClass(String FullName, Boolean checkbox) {
-        this.FullName = FullName;
-
-    }
-
-    public String getName() {
+    public String getFullName() {
         return FullName;
     }
 
-    public void setName(String name) {
-        FullName = name;
+    public void setFullName(String fullName) {
+        FullName = fullName;
     }
+
+    String FullName;
+
+    public StudentClass() {}
+
+    public StudentClass(String FullName) {
+        this.FullName = FullName;
+    }
+
 
 }

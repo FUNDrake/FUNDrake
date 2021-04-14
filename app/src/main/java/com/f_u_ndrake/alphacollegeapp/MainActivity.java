@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Button login,register;
     String email, pass;
     EditText ETemail, ETpass;
+    TextView forgotpass;
     private long backPressedTime;
 
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+
+        forgotpass = (findViewById(R.id.etForgotPassLink));
 
         login = (Button)findViewById(R.id.buttonLoginMainPage);
         register = (Button)findViewById(R.id.buttonRegisterMainPage);
@@ -91,7 +94,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
 
+        forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ForgotPassword.class);
+                startActivity(intent);
             }
         });
     }
@@ -115,5 +125,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 }

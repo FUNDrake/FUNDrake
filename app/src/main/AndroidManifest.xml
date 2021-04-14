@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:windowSoftInputMode="stateVisible|adjustResize">
+        <activity android:name=".ForgotPassword"></activity>
         <activity android:name=".C_CGPATotal" />
         <activity android:name=".Events" />
         <activity android:name=".CGPA" />

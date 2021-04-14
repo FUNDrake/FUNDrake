@@ -2,6 +2,22 @@ package com.f_u_ndrake.alphacollegeapp;
 
 public class StudentClass {
 
+    String FullName;
+
+
+    Boolean ischecked;
+
+    public StudentClass() {}
+
+    public StudentClass(String fullName, Boolean ischecked) {
+        FullName = fullName;
+        this.ischecked = ischecked;
+    }
+
+    public StudentClass(String FullName) {
+        this.FullName = FullName;
+    }
+
     public String getFullName() {
         return FullName;
     }
@@ -10,13 +26,12 @@ public class StudentClass {
         FullName = fullName;
     }
 
-    String FullName;
-
-    public StudentClass() {}
-
-    public StudentClass(String FullName) {
-        this.FullName = FullName;
+    public Boolean getIschecked() {
+        return ischecked;
     }
 
+    public void setIschecked(Boolean ischecked) {
+        this.ischecked = ischecked;
+    }
 
 }

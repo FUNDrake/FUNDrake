@@ -7,7 +7,7 @@ public class UpdateEvent {
     String Description;
 
 
-    public UpdateEvent(){};
+    public UpdateEvent(){}
 
     public String getTitle() {
         return Title;

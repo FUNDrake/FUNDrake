@@ -5,17 +5,21 @@ public class StudentClass {
     String FullName;
 
 
-    Boolean ischecked;
+    Boolean check;
 
     public StudentClass() {}
 
-    public StudentClass(String fullName, Boolean ischecked) {
+    public StudentClass(String fullName, Boolean check) {
         FullName = fullName;
-        this.ischecked = ischecked;
+        this.check = check;
     }
 
-    public StudentClass(String FullName) {
-        this.FullName = FullName;
+    public Boolean getCheck() {
+        return check;
+    }
+
+    public void setCheck(Boolean check) {
+        this.check = check;
     }
 
     public String getFullName() {
@@ -24,14 +28,6 @@ public class StudentClass {
 
     public void setFullName(String fullName) {
         FullName = fullName;
-    }
-
-    public Boolean getIschecked() {
-        return ischecked;
-    }
-
-    public void setIschecked(Boolean ischecked) {
-        this.ischecked = ischecked;
     }
 
 }

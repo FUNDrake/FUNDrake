@@ -1,91 +1,111 @@
 package com.f_u_ndrake.alphacollegeapp;
 
-import android.util.Log;
+import android.content.Context;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.DocumentSnapshot;
+import java.util.ArrayList;
+import java.util.List;
 
-public class StudentAdapter extends FirestoreRecyclerAdapter<StudentClass, StudentAdapter.StudentHolder> {
+public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder>{
+    private ArrayList<StudentClass> studentClassArrayList;
+    public static List<String> presentArray = new ArrayList<>();
+    public static List<String> absentArray = new ArrayList<>();
+    public SparseBooleanArray array = new SparseBooleanArray();
+    private int selectedPosition= -1;
+    private Context context;
+    boolean selectall,selectnone;
 
-    private OnItemClickListener listener;
-    private boolean isSelectedAll;
-
-    public StudentAdapter(@NonNull FirestoreRecyclerOptions<StudentClass> options) { super(options);
+    public StudentAdapter(ArrayList<StudentClass> studentClassArrayList, Context context) {
+        this.studentClassArrayList = studentClassArrayList;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public StudentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_student,parent,false);
-        return new StudentHolder(v);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_student, parent, false));
+    }
+
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        StudentClass courses = studentClassArrayList.get(position);
+        holder.box.setText(courses.getFullName());
+        if(selectall){
+            holder.box.setChecked(true);
+            absentArray.clear();
+            presentArray.add(holder.box.getText().toString());
+        }if (selectnone) {
+            holder.box.setChecked(false);
+            presentArray.clear();
+            absentArray.clear();
+            absentArray.add(holder.box.getText().toString());
+        }else{
+            absentArray.add(holder.box.getText().toString());
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return super.getItemCount();
+        return studentClassArrayList.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return super.getItemId(position);
+    public List<String> getPresentArray(){
+        return presentArray;
     }
 
-    @NonNull
-    @Override
-    public StudentClass getItem(int position) {
-        return super.getItem(position);
+    public List<String> getAbsentArray(){
+        return absentArray;
     }
 
-    public void selectAll(){
-        Log.e("onClickSelectAll","yes");
-        isSelectedAll = true;
+    public void mselectall(){
+        selectall = true;
+        selectnone = false;
         notifyDataSetChanged();
     }
 
-    @Override
-    protected void onBindViewHolder(@NonNull StudentHolder holder, int position, @NonNull StudentClass model) {
-        holder.checkBox.setText(model.getFullName());
-
+    public void munselectall(){
+        selectnone = true;
+        selectall = false;
+        notifyDataSetChanged();
     }
 
-    class StudentHolder extends RecyclerView.ViewHolder{
-        CheckBox checkBox;
-        public StudentHolder(@NonNull View itemView) {
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        CheckBox box;
+        Boolean aBoolean;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            checkBox =  itemView.findViewById(R.id.checkBoxAttend);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
+            box = itemView.findViewById(R.id.checkBoxAttend);
+            aBoolean = box.isChecked();
+            box.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    String name = checkBox.getText().toString();
-                    if(position != RecyclerView.NO_POSITION && listener != null){
-                        listener.onItemClick(getSnapshots().getSnapshot(position),position);
+                    if (box.isChecked()){
+                        box.setSelected(true);
+                        presentArray.add(box.getText().toString());
+                        absentArray.remove(box.getText().toString());
+                        //Toast.makeText(itemView.getContext(),"True Selected = "+box.getText().toString(),Toast.LENGTH_SHORT).show();
+                    }else {
+                        box.setSelected(false);
+                        presentArray.remove(box.getText().toString());
+                        absentArray.add(box.getText().toString());
+                        //Toast.makeText(itemView.getContext(),"False Selected = "+box.getText().toString(),Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
             });
+
         }
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(DocumentSnapshot documentSnapshot, int position);
 
-    }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.listener = listener;
-    }
+
 }
-
-

@@ -1,10 +1,12 @@
 package com.f_u_ndrake.alphacollegeapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -13,23 +15,28 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.firebase.ui.firestore.SnapshotParser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class AttendanceProf extends AppCompatActivity implements StudentAdapter.OnItemClickListener {
+public class AttendanceProf extends AppCompatActivity {
 
     Spinner AttendProfDep,AttendProfYear,AttendProfPeriod,AttendProfSem,AttendProfSub;
     Button Submit,GetClass,SelectAll, SelectNone;
@@ -37,9 +44,12 @@ public class AttendanceProf extends AppCompatActivity implements StudentAdapter.
     CollectionReference UserRef = db.collection("Users");
     RecyclerView recyclerViewStud;
     String dep,year,period;
-    private StudentAdapter adapter;
-    int studcount;
+    private List<String> present,absent;
+    private ArrayList<StudentClass> studentClassArrayList;
+    private StudentAdapter studentAdapter;
+    int subjectpos;
     private static final String TAG = "AttendanceProf";
+
     Query query;
 
 
@@ -66,16 +76,35 @@ public class AttendanceProf extends AppCompatActivity implements StudentAdapter.
         SelectNone = (Button)findViewById(R.id.buttonSelectNone);
         Submit = (Button)findViewById(R.id.buttonAttendProfSubmit);
 
+        recyclerViewStud = (RecyclerView)findViewById(R.id.recycler_viewStud);
+
         String[] arrayDepart = new String[] {
                 "CSE", "BME", "ECE", "MECH", "MBA"};
         String[] arrayYear = new String[] {
                 "1st Year", "2nd Year", "3rd Year", "4th Year"};
         String[] arrayPeriod = new String[] {
                 "1st Period" , "2nd Period" , "3rd Period" , "4th Period" , "5th Period" , "6th Period" , "7th Period" , "8th Period" , "9th Period" };
-        String[] arraySem = new String[] {
-                "1st Semester", "2nd Semester","3rd Semester","4th Semester","5th Semester","6th Semester","7th Semester","8th Semester"};
+        String[] arraySem12 = new String[] {
+                "Semester 1", "Semester 2"};
+        String[] arraySem34 = new String[] {
+                "Semester 3", "Semester 4"};
+        String[] arraySem56 = new String[] {
+                "Semester 5", "Semester 6"};
+        String[] arraySem78 = new String[] {
+                "Semester 7", "Semester 8"};
         String[] ALLDEP1Y1S = new String[] {"HS8151 Communicative English","MA8151 Engineering Mathematics - I","PH8151 Engineering Physics","CY8151 Engineering Chemistry","GE8151 Problem Solving and Python Programming","GE8152 Engineering Graphics"};
 
+        ArrayAdapter<String> adapterSem12 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySem12);
+        adapterSem12.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<String> adapterSem34 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySem34);
+        adapterSem34.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<String> adapterSem56 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySem56);
+        adapterSem56.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<String> adapterSem78 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySem78);
+        adapterSem78.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //CSE String Department
 
@@ -123,10 +152,6 @@ public class AttendanceProf extends AppCompatActivity implements StudentAdapter.
         String[] IT4Y7S = new String[]{"MG8591 Principles of Management", "CS8792 Cryptography and Network Security", "CS8791 Cloud Computing"};
 
 
-        ArrayAdapter<String> adapterSem = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySem);
-        adapterSem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        AttendProfSem.setAdapter(adapterSem);
-
         ArrayAdapter<String> adapterDepart = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayDepart);
         adapterDepart.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         AttendProfDep.setAdapter(adapterDepart);
@@ -147,7 +172,6 @@ public class AttendanceProf extends AppCompatActivity implements StudentAdapter.
 
         ArrayAdapter<String> adapterALLDEP1Y1S = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, ALLDEP1Y1S);
         adapterALLDEP1Y1S.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
 
         ArrayAdapter<String> adapterCSE1Y2S = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, CSE1Y2S);
         adapterCSE1Y2S.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -247,6 +271,21 @@ public class AttendanceProf extends AppCompatActivity implements StudentAdapter.
         ArrayAdapter<String> adapterIT4Y7S = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, IT4Y7S);
         adapterIT4Y7S.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        AttendProfYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (AttendProfYear.getSelectedItemPosition()){
+                    case 0 : AttendProfSem.setAdapter(adapterSem12); break;
+                    case 1 : AttendProfSem.setAdapter(adapterSem34); break;
+                    case 2 : AttendProfSem.setAdapter(adapterSem56); break;
+                    case 3 : AttendProfSem.setAdapter(adapterSem78); break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         AttendProfSem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -415,94 +454,138 @@ public class AttendanceProf extends AppCompatActivity implements StudentAdapter.
             }
         });
 
-
-        Query query = UserRef.whereEqualTo("Department",dep).whereEqualTo("Year",year);
-        FirestoreRecyclerOptions<StudentClass> options = new FirestoreRecyclerOptions.Builder<StudentClass>()
-                .setQuery(query,StudentClass.class)
-                .build();
-
-        adapter = new StudentAdapter(options);
-        recyclerViewStud = findViewById(R.id.recycler_viewStud);
+        studentClassArrayList = new ArrayList<>();
         recyclerViewStud.setHasFixedSize(true);
-        recyclerViewStud.setLayoutManager(new LinearLayoutManager(AttendanceProf.this));
-        recyclerViewStud.setAdapter(adapter);
+        recyclerViewStud.setLayoutManager(new LinearLayoutManager(this));
+        studentAdapter = new StudentAdapter(studentClassArrayList, this);
 
-        adapter.startListening();
+        recyclerViewStud.setAdapter(studentAdapter);
+
 
         GetClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                studentClassArrayList.clear();
+                db.collection("Users")
+                        .whereEqualTo("Year",AttendProfYear.getSelectedItem().toString())
+                        .whereEqualTo("Department",AttendProfDep.getSelectedItem().toString())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                if (!queryDocumentSnapshots.isEmpty()) {
+                                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                                    for (DocumentSnapshot d : list) {
+                                        StudentClass c = d.toObject(StudentClass.class);
+                                        studentClassArrayList.add(c);
 
+                                    }
+                                    studentAdapter.notifyDataSetChanged();
+                                } else {
+                                    Toast.makeText(AttendanceProf.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                                    studentClassArrayList.clear();
+                                    studentAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AttendanceProf.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                        studentClassArrayList.clear();
+                        studentAdapter.notifyDataSetChanged();
+                    }
+                });
 
-                dep = AttendProfDep.getSelectedItem().toString();
-                year = AttendProfYear.getSelectedItem().toString();
-                period = AttendProfPeriod.getSelectedItem().toString();
-                
-                Query query = UserRef.whereEqualTo("Department",dep).whereEqualTo("Year",year);
-                FirestoreRecyclerOptions<StudentClass> options = new FirestoreRecyclerOptions.Builder<StudentClass>()
-                        .setQuery(query,StudentClass.class)
-                        .build();
+            }
 
-                adapter = new StudentAdapter(options);
-                recyclerViewStud = findViewById(R.id.recycler_viewStud);
-                int totalstud = recyclerViewStud.getChildCount();
-                Toast.makeText(AttendanceProf.this,"Dep = "+dep+"\nYear = "+year+"\nStudents in Class = "+totalstud,Toast.LENGTH_SHORT).show();
-                recyclerViewStud.setHasFixedSize(true);
-                recyclerViewStud.setLayoutManager(new LinearLayoutManager(AttendanceProf.this));
-                recyclerViewStud.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                adapter.startListening();
+        });
 
-                adapter.setOnItemClickListener(AttendanceProf.this);
+        SelectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(studentAdapter.getItemCount()==0){
+                    Toast.makeText(AttendanceProf.this, "Please choose a class", Toast.LENGTH_SHORT).show();
+                }
+                studentAdapter.mselectall();
+                Toast.makeText(AttendanceProf.this, "Selected All Students", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        SelectNone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(studentAdapter.getItemCount()==0){
+                    Toast.makeText(AttendanceProf.this, "Please choose a class", Toast.LENGTH_SHORT).show();
+            }
+                studentAdapter.munselectall();
+                Toast.makeText(AttendanceProf.this, "Deselected All Students", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         Submit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                StringBuilder stringBuilder = new StringBuilder();
-                String subname,DBFullName,Period;
+                subjectpos = AttendProfSub.getSelectedItemPosition();
+                StringBuilder stringPresent = new StringBuilder();
+                StringBuilder stringAbsent = new StringBuilder();
+                String subname,DBFullNameP= "",DBFullNameA= "",Period;
                 Boolean DBischecked;
-                for (int i=1;i<=recyclerViewStud.getChildCount();i++){
-                }
 
-                Toast.makeText(AttendanceProf.this,"String = "+stringBuilder,Toast.LENGTH_SHORT).show();
-                // ************************************************************************* CHANGE THIS <<<=======================
-                DBFullName = "A";
-                // ************************************************************************* CHANGE THIS <<<=======================
-                DBischecked = true;
+                int i = 0;
+                present = studentAdapter.getPresentArray();
+                absent = studentAdapter.getAbsentArray();
+                stringPresent.append(present);
+                stringAbsent.append(absent);
+
+                Toast.makeText(AttendanceProf.this,"Present = "+present+"\nAbsent ="+absent,Toast.LENGTH_LONG).show();
+
+                DBFullNameP = stringPresent.toString();
+                DBFullNameA = stringAbsent.toString();
+
                 Period = AttendProfPeriod.getSelectedItem().toString();
                 subname = AttendProfSub.getSelectedItem().toString();
-
                 DocumentReference documentReference = db.collection("Attendance").document(subname);
-                Map<String,Object> StudentClass = new HashMap<>();
-                StudentClass.put("Name",DBFullName);
-                StudentClass.put("Present",DBischecked);
-                documentReference.set(StudentClass).addOnSuccessListener(new OnSuccessListener<Void>() {
+                DocumentReference documentReference1 = documentReference.collection(date).document(Period);
+                Map<String,Object> attendanceclass = new HashMap<>();
+                attendanceclass.put("Present Student Names",DBFullNameP);
+                attendanceclass.put("Absent Student Names",DBFullNameA);
+                documentReference1.set(attendanceclass).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG,"User created with ID + " +subname);
+                        Toast.makeText(AttendanceProf.this,"Attendance Marked!",Toast.LENGTH_LONG).show();
                     }
                 });
 
+                for (int j = 0; j < present.size(); j++) {
+                    String name = present.get(j);
+                    db.collection("Users").whereEqualTo("FullName",name).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            if(queryDocumentSnapshots.isEmpty()){
 
+                            }else{
+                                DocumentReference ref = queryDocumentSnapshots.getDocuments().get(i).getReference();
+                                Map<String,Object> addattend = new HashMap<>();
+                                addattend.put("Subject 1 Attendance",FieldValue.increment(1));
+                                ref.update(addattend).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(AttendanceProf.this,"Attendance Marked!",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        }
+                    });
 
-                //Toast.makeText(AttendanceProf.this,"People = "+stringBuilder,Toast.LENGTH_SHORT).show();
+                }
+                stringPresent.setLength(0);
+                stringAbsent.setLength(0);
             }
         });
 
-        //Query query = UserRef.whereEqualTo("Department", dep).whereEqualTo("Year",year);
-
-    }
-
-    @Override
-    public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-        StudentClass note = documentSnapshot.toObject(StudentClass.class);
-        String id = documentSnapshot.getId();
-        String path = documentSnapshot.getReference().getPath();
-
-        Toast.makeText(AttendanceProf.this,"Position = "+position+"\nID = "+id,Toast.LENGTH_SHORT).show();
     }
 
 }

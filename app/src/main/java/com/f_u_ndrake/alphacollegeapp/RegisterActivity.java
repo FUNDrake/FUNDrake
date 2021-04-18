@@ -231,6 +231,15 @@ public class RegisterActivity extends AppCompatActivity {
                                         users.put("Department",DBdepartment);
                                         users.put("Year",DByear);
                                         users.put("Semester",DBsemester);
+                                        users.put("Subject 1 Attendance",0);
+                                        users.put("Subject 2 Attendance",0);
+                                        users.put("Subject 3 Attendance",0);
+                                        users.put("Subject 4 Attendance",0);
+                                        users.put("Subject 5 Attendance",0);
+                                        users.put("Subject 6 Attendance",0);
+                                        users.put("Subject 7 Attendance",0);
+                                        users.put("Subject 8 Attendance",0);
+                                        users.put("Subject 9 Attendance",0);
                                         documentReference.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

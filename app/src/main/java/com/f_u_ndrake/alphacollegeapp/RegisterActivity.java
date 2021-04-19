@@ -38,7 +38,7 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
     String[] arrayDepart = new String[] {
-            "CSE", "BME", "ECE", "MECH", "MBA"};
+            "CSE", "BME", "ECE", "MECH", "IT"};
     String[] arrayYear = new String[] {
             "1st Year", "2nd Year", "3rd Year", "4th Year"};
     String[] arraySem12 = new String[] {
@@ -132,37 +132,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               /* if ((TextUtils.isEmpty(ETname.getText()))){
-                    ETname.setError("Name is required!");
-                    ETname.requestFocus();
-                }
-
-                if ((TextUtils.isEmpty(ETemail.getText().toString().trim()))){
-                    ETemail.setError("E-Mail ID is required!");
-                    ETemail.requestFocus();
-                }
-                if ((TextUtils.isEmpty(ETpass.getText().toString().trim()))){
-                    ETpass.setError("Password is required!");
-                    ETpass.requestFocus();
-                }
-                if ((TextUtils.isEmpty(ETphone.getText().toString().trim()))){
-                    ETphone.setError("Number is required!");
-                    ETphone.requestFocus();
-                }
-                if ((TextUtils.isEmpty(ETau.getText().toString().trim()))){
-                    ETau.setError("Anna University Roll Number is required!");
-                    ETau.requestFocus();
-                }
-                if(rgGen.getCheckedRadioButtonId()==-1){
-                    Toast.makeText(getApplicationContext(),"Please select one gender!", Toast.LENGTH_SHORT).show();
-                    rgGen.requestFocus();
-                }
-                if ((TextUtils.isEmpty(ETaddress.getText().toString().trim()))){
-                    ETaddress.setError("Enter your Address!");
-                    ETaddress.requestFocus();
-                }
-*/
-
                 int pass=0;
 
                 String DBfullname = ETname.getText().toString().trim();
@@ -180,8 +149,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String email = ETemail.getText().toString().trim();
                 String password = ETpass.getText().toString().trim();
-
-
 
                 if (TextUtils.isEmpty(ETname.getText().toString().trim())){
                     ETname.setError("Enter Name");

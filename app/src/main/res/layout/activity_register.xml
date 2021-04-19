@@ -117,6 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLength="10"
                 android:hint="Number"
                 android:inputType="phone" />
 
@@ -132,6 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLength="12"
                 android:hint="2101-17-104-001"
                 android:inputType="number" />
 

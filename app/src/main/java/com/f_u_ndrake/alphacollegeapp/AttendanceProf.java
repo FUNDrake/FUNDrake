@@ -164,9 +164,9 @@ public class AttendanceProf extends AppCompatActivity {
         adapterPeriod.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         AttendProfPeriod.setAdapter(adapterPeriod);
 
-        dep = AttendProfDep.getSelectedItem().toString();
-        year = AttendProfYear.getSelectedItem().toString();
-        period = AttendProfPeriod.getSelectedItem().toString();
+        dep = AttendProfDep.getSelectedItem().toString().trim();
+        year = AttendProfYear.getSelectedItem().toString().trim();
+        period = AttendProfPeriod.getSelectedItem().toString().trim();
 
         //CSE Adapter for Spinner
 
@@ -558,18 +558,18 @@ public class AttendanceProf extends AppCompatActivity {
                         Toast.makeText(AttendanceProf.this,"Attendance Marked!",Toast.LENGTH_LONG).show();
                     }
                 });
-
+                subjectpos+=1;
                 for (int j = 0; j < present.size(); j++) {
                     String name = present.get(j);
                     db.collection("Users").whereEqualTo("FullName",name).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             if(queryDocumentSnapshots.isEmpty()){
-
+                                Toast.makeText(AttendanceProf.this,"Something went wrong!",Toast.LENGTH_LONG).show();
                             }else{
                                 DocumentReference ref = queryDocumentSnapshots.getDocuments().get(i).getReference();
                                 Map<String,Object> addattend = new HashMap<>();
-                                addattend.put("Subject 1 Attendance",FieldValue.increment(1));
+                                addattend.put("Subject "+subjectpos+" Attendance",FieldValue.increment(1));
                                 ref.update(addattend).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {

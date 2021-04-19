@@ -7,7 +7,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MenuActivity extends AppCompatActivity {
 
-    CardView Material, Attendance,AttendanceProf,News,Calendar,Events,CGPA;
+    CardView Material, Attendance,AttendanceProf,News,Calendar,Events,CGPA,Assignment;
     TextView welcomeUser;
+    ImageButton logout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private long backPressedTime;
     public String firstName,dep,sem;
@@ -43,12 +46,15 @@ public class MenuActivity extends AppCompatActivity {
                 getvalue(firstName,dep,sem);
                 //other stuff
                 welcomeUser.setText(" Welcome back \n" + firstName );
-
             }//deal with error
-
+            if(!task.isSuccessful()){
+                Toast.makeText(MenuActivity.this,"There was some problem retrieving data",Toast.LENGTH_LONG).show();
+            }
         });
 
+        logout = (ImageButton)findViewById(R.id.imageButLogout);
 
+        Assignment = (CardView)findViewById(R.id.cardviewAssignment);
         Material = (CardView)findViewById(R.id.cardviewMaterial);
         Attendance = (CardView)findViewById(R.id.cardviewAttendance);
         News =  (CardView)findViewById(R.id.cardviewNews);
@@ -58,6 +64,15 @@ public class MenuActivity extends AppCompatActivity {
         CGPA = (CardView)findViewById(R.id.cardviewCGPA);
 
         welcomeUser = (TextView)findViewById(R.id.textWelcome);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MenuActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         CGPA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +105,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this,AttendanceProf.class);
+                startActivity(intent);
+            }
+        });
+
+        Assignment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this,Assignment.class);
                 startActivity(intent);
             }
         });
@@ -127,19 +150,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        /*Database show data
-        db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .get().addOnCompleteListener(task -> {
-            if(task.isSuccessful() && task.getResult() != null){
-                String firstName = task.getResult().getString("FullName");
-                String email = task.getResult().getString("Email");
-                String phone = task.getResult().getString("Phone");
-                //other stuff
-                Toast.makeText(MenuActivity.this,"FN " + firstName + "EM" + email + "phone " + phone , Toast.LENGTH_SHORT).show();
-            }else{
-                //deal with error
-            }
-        });*/
     }
 
     private void getvalue(String firstName,String dep, String sem) {
@@ -187,10 +197,6 @@ public class MenuActivity extends AppCompatActivity {
                 finishAffinity();
                 android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(1);
-
-                //if you want to finish just current activity
-
-//                MenuActivity.this.finish();
             }
         });
         ab.setNegativeButton("no", new DialogInterface.OnClickListener() {

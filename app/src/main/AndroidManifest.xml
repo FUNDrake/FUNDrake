@@ -14,11 +14,13 @@
         android:roundIcon="@drawable/icon_logo"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:theme="@style/Theme.Design.Light.NoActionBar"
         android:windowSoftInputMode="stateVisible|adjustResize">
-        <activity android:name=".Assignment"></activity>
+        <activity android:name=".Contact"></activity>
+        <activity android:name=".TimeTable" />
+        <activity android:name=".Assignment" />
         <activity android:name=".ForgotPassword" />
-        <activity android:name=".C_CGPATotal" />
+        <activity android:name=".C_CGPASingle" />
         <activity android:name=".Events" />
         <activity android:name=".CGPA" />
         <activity android:name=".CalendarEvent" />
@@ -30,7 +32,8 @@
         <activity android:name=".DownloadMaterial" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashScreenIntro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

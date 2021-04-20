@@ -1,13 +1,5 @@
 <resources>
     <string name="app_name">Alpha College App</string>
-    <string-array name="ALLDEP1Y1S">
-        <item> HS8151 Communicative English</item>
-        <item> MA8151 Engineering Mathematics - I</item>
-        <item> PH8151 Engineering Physics</item>
-        <item> CY8151 Engineering Chemistry</item>
-        <item> GE8151 Problem Solving and Python Programming</item>
-        <item> GE8152 Engineering Graphics</item>
-    </string-array>
     <string-array name="Grade">
         <item>O</item>
         <item>A+</item>

@@ -21,6 +21,7 @@ public class UpdateAdapter extends FirestoreRecyclerAdapter<UpdateEvent, UpdateA
     protected void onBindViewHolder(@NonNull UpdateHolder holder, int position, @NonNull UpdateEvent model) {
         holder.textViewTitle.setText(model.getTitle());
         holder.textViewDescription.setText(model.getDescription());
+        holder.textViewTimestamp.setText(model.getTimestamp().toString());
     }
 
     @NonNull
@@ -33,11 +34,13 @@ public class UpdateAdapter extends FirestoreRecyclerAdapter<UpdateEvent, UpdateA
     class UpdateHolder extends RecyclerView.ViewHolder{
         TextView textViewTitle;
         TextView textViewDescription;
+        TextView textViewTimestamp;
 
         public UpdateHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.updateTitle);
             textViewDescription = itemView.findViewById(R.id.updateDescription);
+            textViewTimestamp = itemView.findViewById(R.id.updateTimestamp);
         }
     }
 }

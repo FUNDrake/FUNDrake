@@ -43,7 +43,7 @@ public class AttendanceProf extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference UserRef = db.collection("Users");
     RecyclerView recyclerViewStud;
-    String dep,year,period;
+    String dep,year,period,sem;
     private List<String> present,absent;
     private ArrayList<StudentClass> studentClassArrayList;
     private StudentAdapter studentAdapter;
@@ -79,19 +79,19 @@ public class AttendanceProf extends AppCompatActivity {
         recyclerViewStud = (RecyclerView)findViewById(R.id.recycler_viewStud);
 
         String[] arrayDepart = new String[] {
-                "CSE", "BME", "ECE", "MECH", "MBA"};
+                "CSE", "BME", "ECE", "MECH", "IT"};
         String[] arrayYear = new String[] {
                 "1st Year", "2nd Year", "3rd Year", "4th Year"};
         String[] arrayPeriod = new String[] {
                 "1st Period" , "2nd Period" , "3rd Period" , "4th Period" , "5th Period" , "6th Period" , "7th Period" , "8th Period" , "9th Period" };
         String[] arraySem12 = new String[] {
-                "Semester 1", "Semester 2"};
+                "1st Semester", "2nd Semester"};
         String[] arraySem34 = new String[] {
-                "Semester 3", "Semester 4"};
+                "3rd Semester", "4th Semester"};
         String[] arraySem56 = new String[] {
-                "Semester 5", "Semester 6"};
+                "5th Semester", "6th Semester"};
         String[] arraySem78 = new String[] {
-                "Semester 7", "Semester 8"};
+                "7th Semester", "8th Semester"};
         String[] ALLDEP1Y1S = new String[] {"HS8151 Communicative English","MA8151 Engineering Mathematics - I","PH8151 Engineering Physics","CY8151 Engineering Chemistry","GE8151 Problem Solving and Python Programming","GE8152 Engineering Graphics"};
 
         ArrayAdapter<String> adapterSem12 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySem12);
@@ -467,8 +467,9 @@ public class AttendanceProf extends AppCompatActivity {
             public void onClick(View v) {
                 studentClassArrayList.clear();
                 db.collection("Users")
-                        .whereEqualTo("Year",AttendProfYear.getSelectedItem().toString())
                         .whereEqualTo("Department",AttendProfDep.getSelectedItem().toString())
+                        .whereEqualTo("Year",AttendProfYear.getSelectedItem().toString())
+                        .whereEqualTo("Semester",AttendProfSem.getSelectedItem().toString())    
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
@@ -478,7 +479,6 @@ public class AttendanceProf extends AppCompatActivity {
                                     for (DocumentSnapshot d : list) {
                                         StudentClass c = d.toObject(StudentClass.class);
                                         studentClassArrayList.add(c);
-
                                     }
                                     studentAdapter.notifyDataSetChanged();
                                 } else {
@@ -531,15 +531,18 @@ public class AttendanceProf extends AppCompatActivity {
                 StringBuilder stringPresent = new StringBuilder();
                 StringBuilder stringAbsent = new StringBuilder();
                 String subname,DBFullNameP= "",DBFullNameA= "",Period;
-                Boolean DBischecked;
 
-                int i = 0;
                 present = studentAdapter.getPresentArray();
                 absent = studentAdapter.getAbsentArray();
                 stringPresent.append(present);
                 stringAbsent.append(absent);
 
-                Toast.makeText(AttendanceProf.this,"Present = "+present+"\nAbsent ="+absent,Toast.LENGTH_LONG).show();
+                if(recyclerViewStud.getChildCount()==0){
+                    Toast.makeText(AttendanceProf.this,"Please choose a class!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(AttendanceProf.this,"Present = "+present+"\nAbsent ="+absent,Toast.LENGTH_SHORT).show();
 
                 DBFullNameP = stringPresent.toString();
                 DBFullNameA = stringAbsent.toString();
@@ -555,10 +558,10 @@ public class AttendanceProf extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG,"User created with ID + " +subname);
-                        Toast.makeText(AttendanceProf.this,"Attendance Marked!",Toast.LENGTH_LONG).show();
                     }
                 });
                 subjectpos+=1;
+                int i = 0;
                 for (int j = 0; j < present.size(); j++) {
                     String name = present.get(j);
                     db.collection("Users").whereEqualTo("FullName",name).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -579,7 +582,6 @@ public class AttendanceProf extends AppCompatActivity {
                             }
                         }
                     });
-
                 }
                 stringPresent.setLength(0);
                 stringAbsent.setLength(0);

@@ -12,7 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class AttendanceStud3 extends AppCompatActivity {
 
     TextView SubCode1,SubName1,Attend1,SubCode2,SubName2,Attend2,SubCode3,SubName3,Attend3;
-    int attendance1,attendance2,attendance3;
+    String attendance1,attendance2,attendance3;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public String firstName,dep,sem;
     private static final String TAG = "AttendanceStud3";
@@ -37,9 +37,12 @@ public class AttendanceStud3 extends AppCompatActivity {
         db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get().addOnCompleteListener(task -> {
             if(task.isSuccessful() && task.getResult() != null){
-                firstName = task.getResult().getString("FullName");
-                dep = task.getResult().getString("Department");
-                sem = task.getResult().getString("Semester");
+                firstName = task.getResult().get("FullName").toString();
+                dep = task.getResult().get("Department").toString();
+                sem = task.getResult().get("Semester").toString();
+                attendance1 = task.getResult().get("Subject 1 Attendance").toString();
+                attendance2 = task.getResult().get("Subject 2 Attendance").toString();
+                attendance3 = task.getResult().get("Subject 3 Attendance").toString();
                 getvalue(firstName,dep,sem);
                 //other stuff
 
@@ -52,9 +55,9 @@ public class AttendanceStud3 extends AppCompatActivity {
         this.firstName = firstName;
         this.dep = dep;
         this.sem = sem;
-        /*Attend1.setText(attendance1);
+        Attend1.setText(attendance1);
         Attend2.setText(attendance2);
-        Attend3.setText(attendance3);*/
+        Attend3.setText(attendance3);
         if(dep.equals("CSE")){
             SubCode1.setText("CS8080");
             SubName1.setText("Information Retrieval Technique");

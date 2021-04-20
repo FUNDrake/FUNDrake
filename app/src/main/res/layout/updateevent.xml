@@ -44,6 +44,20 @@
             android:textStyle="bold"
             android:paddingLeft="12dp" />
 
+        <TextView
+            android:id="@+id/updateTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:padding="8dp"
+            android:text="Timestamp"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:minLines="2"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"/>
+
 
     </androidx.cardview.widget.CardView>
 

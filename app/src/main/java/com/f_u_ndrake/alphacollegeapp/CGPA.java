@@ -80,7 +80,7 @@ public class CGPA extends AppCompatActivity {
             }
         });
 
-/*                String savedPref = sharedPreferences.getString("savedPref",null);
+/*      String savedPref = sharedPreferences.getString("savedPref",null);
         String Sdep = sharedPreferences.getString("SPdepartment",null);
         String Syear = sharedPreferences.getString("SPyear",null);
         String Ssem = sharedPreferences.getString("SPsemester",null);
@@ -90,9 +90,14 @@ public class CGPA extends AppCompatActivity {
         editor.putString(Sdep, Dep.getSelectedItem().toString());
         editor.putString(Syear, Year.getSelectedItem().toString());
         editor.putString(Ssem, Sem.getSelectedItem().toString());
+
+        Ssem = Sem.getSelectedItem().toString();
+                Intent intent = new Intent(CGPA.this,C_CGPATotal.class);
+                intent.putExtra("shareddepartment",Sdepart);
+                intent.putExtra("sharedyear",Syear);
+                intent.putExtra("sharedsem",Ssem);
+                startActivity(intent);
         */
-
-
 
         GPA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +105,7 @@ public class CGPA extends AppCompatActivity {
                 Sdepart = Dep.getSelectedItem().toString();
                 Syear = Year.getSelectedItem().toString();
                 Ssem = Sem.getSelectedItem().toString();
-                Intent intent = new Intent(CGPA.this,C_CGPATotal.class);
+                Intent intent = new Intent(CGPA.this, C_CGPASingle.class);
                 intent.putExtra("shareddepartment",Sdepart);
                 intent.putExtra("sharedyear",Syear);
                 intent.putExtra("sharedsem",Ssem);

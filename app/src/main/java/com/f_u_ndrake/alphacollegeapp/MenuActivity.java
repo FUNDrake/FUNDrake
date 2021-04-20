@@ -7,7 +7,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -59,7 +58,7 @@ public class MenuActivity extends AppCompatActivity {
         Attendance = (CardView)findViewById(R.id.cardviewAttendance);
         News =  (CardView)findViewById(R.id.cardviewNews);
         Calendar =  (CardView)findViewById(R.id.cardviewCalendar);
-        AttendanceProf = (CardView)findViewById(R.id.imgcalenda2);
+        AttendanceProf = (CardView)findViewById(R.id.imgattendprof);
         Events = (CardView)findViewById(R.id.cardviewEvents);
         CGPA = (CardView)findViewById(R.id.cardviewCGPA);
 
@@ -68,9 +67,29 @@ public class MenuActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(MenuActivity.this,MainActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder SignOut = new AlertDialog.Builder(MenuActivity.this);
+                SignOut.setTitle("Sign out?");
+                SignOut.setMessage("Are you sure you want to sign out?");
+
+                SignOut.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        //if you want to kill app . from other then your main avtivity.(Launcher)
+
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(MenuActivity.this,MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                SignOut.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                SignOut.show();
             }
         });
 
@@ -93,11 +112,11 @@ public class MenuActivity extends AppCompatActivity {
                         Intent intent1 = new Intent(MenuActivity.this,AttendanceStud9.class);
                         startActivity(intent1);break;
                     case 3:
-                        Intent intent4 = new Intent(MenuActivity.this,AttendanceStud3.class);
-                        startActivity(intent4);
-                    default:
-                        Toast.makeText(MenuActivity.this,"Dep = "+dep+"\nSem = "+sem+"\nSubject = "+subject,Toast.LENGTH_LONG).show();
+                        Intent intent2 = new Intent(MenuActivity.this,AttendanceStud3.class);
+                        startActivity(intent2);
+
                     }
+                Toast.makeText(MenuActivity.this,"Dep = "+dep+"\nSem = "+sem+"\nSubject = "+subject,Toast.LENGTH_LONG).show();
                 }
         });
 
@@ -128,7 +147,7 @@ public class MenuActivity extends AppCompatActivity {
         Calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this,CalendarEvent.class);
+                Intent intent = new Intent(MenuActivity.this,TimeTable.class);
                 startActivity(intent);
             }
         });
@@ -156,29 +175,135 @@ public class MenuActivity extends AppCompatActivity {
         this.firstName = firstName;
         this.dep = dep;
         this.sem = sem;
-        if(sem.equals("1st Semester")){
-            subject=8;
+        if(dep.equals("CSE")){
+            if(sem.equals("1st Semester")){
+                subject=8;
+            }
+            if(sem.equals("2nd Semester")){
+                subject=8;
+            }
+            if(sem.equals("3rd Semester")){
+                subject=9;
+            }
+            if(sem.equals("4th Semester")){
+                subject=9;
+            }
+            if(sem.equals("5th Semester")){
+                subject=9;
+            }
+            if(sem.equals("6th Semester")){
+                subject=9;
+            }
+            if(sem.equals("7th Semester")){
+                subject=8;
+            }
+            if(sem.equals("8th Semester")){
+                subject=3;
+            }
         }
-        if(sem.equals("2nd Semester")){
-            subject=8;
+        if(dep.equals("BME")){
+            if(sem.equals("1st Semester")){
+                subject=8;
+            }
+            if(sem.equals("2nd Semester")){
+                subject=8;
+            }
+            if(sem.equals("3rd Semester")){
+                subject=9;
+            }
+            if(sem.equals("4th Semester")){
+                subject=8;
+            }
+            if(sem.equals("5th Semester")){
+                subject=9;
+            }
+            if(sem.equals("6th Semester")){
+                subject=9;
+            }
+            if(sem.equals("7th Semester")){
+                subject=8;
+            }
+            if(sem.equals("8th Semester")){
+                subject=3;
+            }
         }
-        if(sem.equals("3rd Semester")){
-            subject=9;
+        if(dep.equals("ECE")){
+            if(sem.equals("1st Semester")){
+                subject=8;
+            }
+            if(sem.equals("2nd Semester")){
+                subject=8;
+            }
+            if(sem.equals("3rd Semester")){
+                subject=9;
+            }
+            if(sem.equals("4th Semester")){
+                subject=9;
+            }
+            if(sem.equals("5th Semester")){
+                subject=9;
+            }
+            if(sem.equals("6th Semester")){
+                subject=9;
+            }
+            if(sem.equals("7th Semester")){
+                subject=8;
+            }
+            if(sem.equals("8th Semester")){
+                subject=3;
+            }
         }
-        if(sem.equals("4th Semester")){
-            subject=9;
+        if(dep.equals("MECH")){
+            if(sem.equals("1st Semester")){
+                subject=8;
+            }
+            if(sem.equals("2nd Semester")){
+                subject=8;
+            }
+            if(sem.equals("3rd Semester")){
+                subject=9;
+            }
+            if(sem.equals("4th Semester")){
+                subject=9;
+            }
+            if(sem.equals("5th Semester")){
+                subject=8;
+            }
+            if(sem.equals("6th Semester")){
+                subject=9;
+            }
+            if(sem.equals("7th Semester")){
+                subject=9;
+            }
+            if(sem.equals("8th Semester")){
+                subject=3;
+            }
         }
-        if(sem.equals("5th Semester")){
-            subject=9;
-        }
-        if(sem.equals("6th Semester")){
-            subject=9;
-        }
-        if(sem.equals("7th Semester")){
-            subject=8;
-        }
-        if(sem.equals("8th Semester")){
-            subject=3;
+        if(dep.equals("IT")){
+            if(sem.equals("1st Semester")){
+                subject=8;
+            }
+            if(sem.equals("2nd Semester")){
+                subject=9;
+            }
+            if(sem.equals("3rd Semester")){
+                subject=9;
+            }
+            if(sem.equals("4th Semester")){
+                subject=9;
+            }
+            if(sem.equals("5th Semester")){
+                subject=9;
+            }
+            if(sem.equals("6th Semester")){
+                subject=9;
+            }
+            if(sem.equals("7th Semester")){
+                subject=8;
+            }
+            if(sem.equals("8th Semester")){
+                subject=3;
+            }
         }
         //Toast.makeText(MenuActivity.this,"Name "+firstName + "Dep "+ dep +"Sem " + sem,Toast.LENGTH_LONG).show();
     }
@@ -186,10 +311,10 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder ab = new AlertDialog.Builder(MenuActivity.this);
-        ab.setTitle("Exit?");
-        ab.setMessage("Are you sure to exit?");
-        ab.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder ExitBox = new AlertDialog.Builder(MenuActivity.this);
+        ExitBox.setTitle("Exit?");
+        ExitBox.setMessage("Are you sure to exit?");
+        ExitBox.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -199,14 +324,18 @@ public class MenuActivity extends AppCompatActivity {
                 System.exit(1);
             }
         });
-        ab.setNegativeButton("no", new DialogInterface.OnClickListener() {
+        ExitBox.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
 
-        ab.show();
+        ExitBox.show();
     }
 
+    public void gotoContact(View view) {
+        Intent intent = new Intent(MenuActivity.this,Contact.class);
+        startActivity(intent);
+    }
 }

@@ -14,7 +14,8 @@
         android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:text="Calendar" />
+        android:text="Calendar"
+        android:textColor="@color/black"/>
 
    <CalendarView
         android:id="@+id/calendarView"

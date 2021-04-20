@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(ETemail.getText().toString().isEmpty()) {
                     ETemail.setError("Enter your email ID");
-                    ETemail.requestFocus();
-                    return;
+                    ETemail.requestFocus();return;
                 }
                 if(ETpass.getText().toString().equals("")) {
                     ETpass.setError("Please enter a password");
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
                 email = ETemail.getText().toString();
                 pass =  ETpass.getText().toString();
-
 
                 mAuth.signInWithEmailAndPassword(email, pass)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -79,11 +77,10 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure ", task.getException());
-                                    Toast.makeText(MainActivity.this, "Authentication failed."+task.getException(),
+                                    Toast.makeText(MainActivity.this, "Authentication failed."+task.getException().getLocalizedMessage(),
                                     Toast.LENGTH_SHORT).show();
                                     updateUI(null);
                                 }
-                                // ...
                             }
                         });
             }
@@ -104,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
     @Override
@@ -123,8 +122,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // No user is signed in
         }
-
     }
-
-
 }

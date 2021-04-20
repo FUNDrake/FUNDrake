@@ -131,13 +131,10 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int pass=0;
-
                 String DBfullname = ETname.getText().toString().trim();
                 String DBphonenumber = ETphone.getText().toString().trim();
                 String DBaurollno = ETau.getText().toString().trim();
-                String DBgender;
                 String DByear = Year.getSelectedItem().toString();
                 String DBdepartment = Department.getSelectedItem().toString();
                 String DBsemester = Semester.getSelectedItem().toString();
@@ -145,7 +142,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 int selectedidGen = rgGen.getCheckedRadioButtonId();
                 rbGender = (RadioButton)findViewById(selectedidGen);
-                DBgender =  rbGender.getText().toString();
 
                 String email = ETemail.getText().toString().trim();
                 String password = ETpass.getText().toString().trim();
@@ -179,11 +175,13 @@ public class RegisterActivity extends AppCompatActivity {
                     ETaddress.requestFocus(); return;
                 }
                 else  {
+                    String DBgender =  rbGender.getText().toString();
                     mAuth.createUserWithEmailAndPassword(email,password)
                             .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
+
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         updateUI(user);
                                         userid = mAuth.getCurrentUser().getUid();
@@ -228,42 +226,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
     }
-
-
-      /*  private void storeNewUserData() {
-        String fullname = ETname.getText().toString().trim();
-        String emailid = ETemail.getText().toString().trim();
-        String pass = ETpass.getText().toString().trim();
-        String phonenumber = ETphone.getText().toString().trim();
-        String aurollno = ETau.getText().toString().trim();
-        String gender;
-        String year = Year.getSelectedItem().toString();
-        String department = Department.getSelectedItem().toString();
-        String semester = Semester.getSelectedItem().toString();
-        String address = ETaddress.getText().toString().trim();
-        int selectedidGen = rgGen.getCheckedRadioButtonId();
-
-        rbGender = (RadioButton)findViewById(selectedidGen);
-
-        gender =  rbGender.getText().toString();
-
-
-
-        FirebaseDatabase rootnode = FirebaseDatabase.getInstance();
-        DatabaseReference reference = rootnode.getReference("Users").push();
-
-        UserData addNewUser = new UserData(fullname,emailid,pass,phonenumber,aurollno,gender,address,department,year,semester);
-
-        reference.setValue(addNewUser);
-
-    }*/
-
 
     private void updateUI(FirebaseUser user) {
         user = mAuth.getCurrentUser();
@@ -277,8 +240,9 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         }
-
     }
+
+
 
     public static boolean isValidPassword(String s) {
         Pattern PASSWORD_PATTERN

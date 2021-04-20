@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -27,7 +28,7 @@ public class Events extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        Query query = events;
+        Query query = events.orderBy("Timestamp", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<UpdateEvent> options = new FirestoreRecyclerOptions.Builder<UpdateEvent>()
                 .setQuery(query,UpdateEvent.class)
                 .build();

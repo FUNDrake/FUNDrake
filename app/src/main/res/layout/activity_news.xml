@@ -13,7 +13,8 @@
         android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:text="News" />
+        android:text="News"
+        android:textColor="@color/black"/>
 
     <WebView
         android:layout_width="350dp"

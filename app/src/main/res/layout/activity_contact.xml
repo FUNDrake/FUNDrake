@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Contact" />
+
+    <ImageView
+        android:id="@+id/imageAlphaIntro"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_below="@+id/tvContact"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/contact_intro" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageAlphaIntro"
+        android:gravity="center"
+        android:text="Alpha College of Engineering \nAddress: 34, Udayavar, Thirumazhisai, \nKoil St, Poonamallee, \nChennai, Tamil Nadu 600124\nPhone: 044 2649 5211"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="-Created by \nAdarsh Palande \n210117104001\n If any problems occur please send a screenshot to adarshpalande@gmail.com / 9080912684"
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+</RelativeLayout>
